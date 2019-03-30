@@ -2,6 +2,7 @@ package net.ijiangtao.tech.concurrent.jsd.waitnotify.demo1;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Setter
