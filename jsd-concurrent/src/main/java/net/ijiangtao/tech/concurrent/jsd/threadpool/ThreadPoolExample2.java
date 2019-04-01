@@ -1,8 +1,12 @@
 package net.ijiangtao.tech.concurrent.jsd.threadpool;
 
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+/**
+ * 测试OOM
+ * @author ijiangtao.net
+ */
 public class ThreadPoolExample2 {
 
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
@@ -26,33 +30,8 @@ public class ThreadPoolExample2 {
         System.out.println("end.");
     }
 
-    private static class MyThreadFactory implements ThreadFactory {
-
-        private final AtomicInteger threadNumber = new AtomicInteger(1);
-
-        private final String namePrefix;
-
-        public MyThreadFactory(String namePrefix) {
-            this.namePrefix = namePrefix;
-        }
-
-        public Thread newThread(Runnable runnable) {
-            return new Thread(namePrefix + "-" + threadNumber.get());
-        }
-
-    }
-
-    //newCachedThreadPoolTesterBadly();
-
-    private static final ExecutorService executorService2 = new ThreadPoolExecutor(
-            10,
-            100,30, TimeUnit.SECONDS,
-            new LinkedBlockingDeque<>(),
-            new MyThreadFactory(""),
-            new ThreadPoolExecutor.AbortPolicy());
-
     public static void main(String[] args) {
-
+        newCachedThreadPoolTesterBadly();
     }
 
 }
